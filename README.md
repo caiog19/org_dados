@@ -1,37 +1,56 @@
-# 🗂️ Projeto: Análise Básica de Arquivo CSV com Streamlit
+# 🎬 Projeto: Dashboard Interativo de Títulos da Disney+ com Streamlit
 
-Este é um aplicativo simples desenvolvido com **Streamlit** que permite a análise de arquivos CSV, exibindo informações como:
+Este projeto é um **dashboard interativo** desenvolvido com **Streamlit**, que permite explorar e analisar os dados do catálogo de títulos da Disney+. Os dados são apresentados de forma clara e interativa, com opções de filtros e visualizações.
 
-- Número de linhas e colunas.
-- Nomes das colunas.
-- Prévia dos dados.
-- Resumo estatístico de colunas numéricas.
+---
+
+## 🧰 Funcionalidades
+
+O dashboard oferece:
+
+- **Visão Geral:**
+  - Exibição de métricas principais, como número de títulos, diretores e países únicos.
+  - Gráficos interativos sobre tipos de conteúdo e lançamentos por ano.
+  
+- **Análises Específicas:**
+  - Gráficos detalhados de distribuição por país e ano.
+  - Insights sobre os tipos de conteúdo e padrões no catálogo.
+
+- **Detalhes de Títulos:**
+  - Informações detalhadas de um título selecionado, como diretor, elenco, país, duração e descrição.
+
+- **Download dos Dados Filtrados:**
+  - Possibilidade de exportar os dados filtrados para um arquivo CSV.
 
 ---
 
 ## 🚀 Instruções de Instalação e Uso
 
-Este guia explica como configurar o ambiente, instalar o Python e executar o projeto no seu computador.
+Siga os passos abaixo para configurar o ambiente, instalar as dependências e executar o dashboard.
 
 ### 1️⃣ Instalar o Python
 
-1. Acesse o site oficial do Python: [https://www.python.org/downloads/](https://www.python.org/downloads/).
+1. Baixe e instale o Python 3.7 ou superior no [site oficial](https://www.python.org/downloads/).
+   
+3. Verifique se o Python foi instalado corretamente:
+   
+python --version
 
 ### 2️⃣ Instalar o Streamlit
-No terminal, instale o Streamlit usando o pip:
+1. No terminal, instale o Streamlit usando o pip:
 
 pip install streamlit
 
-Para confirmar a instalação, execute:
+2. Para confirmar a instalação, execute:
 
 streamlit --version
 
 ### 3️⃣ Baixar os Arquivos do Projeto
-Faça o download deste repositório (ou clone usando Git):
+1. Faça o download deste repositório (ou clone usando Git):
 
 git clone https://github.com/seu-usuario/seu-projeto.git
 
-Com o projeto clonado, Execute:
+2. Com o projeto clonado, Execute:
 
 pip install -r requirements.txt
 
