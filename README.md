@@ -31,8 +31,13 @@ Faça o download deste repositório (ou clone usando Git):
 
 git clone https://github.com/seu-usuario/seu-projeto.git
 
+Com o projeto clonado, Execute:
+
+pip install -r requirements.txt
+
 ### 4️⃣ Executar o Aplicativo
 
-Abra o terminal na pasta onde está o arquivo app.py.
+Abra o terminal na pasta onde está o arquivo index.py.
+
 Execute o aplicativo com o comando:
 streamlit run index.py
