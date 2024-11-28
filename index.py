@@ -19,8 +19,23 @@ def load_data():
     df['country'] = df['country'].fillna('Unknown')
     df['rating'] = df['rating'].fillna('Unknown')
     
+    # Tratamento adicional para outras colunas
+    if 'release_year' in df.columns:
+        df['release_year'] = df['release_year'].fillna(df['release_year'].mode()[0])  # Preencher com o ano mais frequente
+    
+    if 'duration' in df.columns:
+        df['duration'] = df['duration'].fillna('Unknown')
+    
+    if 'listed_in' in df.columns:
+        df['listed_in'] = df['listed_in'].fillna('Unknown')
+    
+    if 'description' in df.columns:
+        df['description'] = df['description'].fillna('Descrição não disponível.')
+    
+    if 'title' in df.columns:
+        df['title'] = df['title'].fillna('Título Desconhecido')  # Evitar problemas na seleção de títulos
+    
     return df
-
 
 # Função de filtragem de dados com cache
 @st.cache_data
@@ -141,9 +156,41 @@ def main():
             labels={'Country': 'País', 'Count': 'Quantidade'}
         )
         st.plotly_chart(fig_countries, use_container_width=True)
-
-
- 
+        
+        # Gráfico de Top Diretores
+        st.write("### Top Diretores com Mais Títulos")
+        
+        # Separar múltiplos diretores e contar
+        directors_series = filtered_df['director'].str.split(',', expand=True).stack().str.strip()
+        top_directors = directors_series.value_counts().head(10).reset_index()
+        top_directors.columns = ['Director', 'Count']
+        
+        fig_directors = px.bar(
+            top_directors,
+            x='Director',
+            y='Count',
+            title='Top 10 Diretores com Mais Títulos',
+            labels={'Director': 'Diretor', 'Count': 'Quantidade'},
+            text='Count'
+        )
+        fig_directors.update_traces(textposition='auto')
+        st.plotly_chart(fig_directors, use_container_width=True)
+        
+        # Gráfico de Distribuição das Classificações
+        st.write("### Distribuição das Classificações (Ratings)")
+        rating_distribution = filtered_df['rating'].value_counts().reset_index()
+        rating_distribution.columns = ['Rating', 'Count']
+        
+        fig_ratings = px.bar(
+            rating_distribution,
+            x='Rating',
+            y='Count',
+            title='Distribuição das Classificações',
+            labels={'Rating': 'Classificação', 'Count': 'Quantidade'},
+            text='Count'
+        )
+        fig_ratings.update_traces(textposition='auto')
+        st.plotly_chart(fig_ratings, use_container_width=True)
     
     with tabs[2]:
         st.write("### Detalhes de Títulos")
