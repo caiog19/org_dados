@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 # Função de carregamento e processamento de dados com cache
 @st.cache_data
@@ -12,12 +14,13 @@ def load_data():
         df['date_added'] = pd.to_datetime(df['date_added'], errors='coerce')
     
     # Preencher valores ausentes em colunas importantes
-    df['director'].fillna('Unknown', inplace=True)
-    df['cast'].fillna('Unknown', inplace=True)
-    df['country'].fillna('Unknown', inplace=True)
-    df['rating'].fillna('Unknown', inplace=True)
+    df['director'] = df['director'].fillna('Unknown')
+    df['cast'] = df['cast'].fillna('Unknown')
+    df['country'] = df['country'].fillna('Unknown')
+    df['rating'] = df['rating'].fillna('Unknown')
     
     return df
+
 
 # Função de filtragem de dados com cache
 @st.cache_data
@@ -138,6 +141,9 @@ def main():
             labels={'Country': 'País', 'Count': 'Quantidade'}
         )
         st.plotly_chart(fig_countries, use_container_width=True)
+
+
+ 
     
     with tabs[2]:
         st.write("### Detalhes de Títulos")
